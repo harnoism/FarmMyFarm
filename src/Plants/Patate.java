@@ -8,7 +8,8 @@ public class Patate extends Plant {
         this.name = "Patate";
         this.buyMoney = 50;
         this.sellMoney = 100;
+        this.price = 25;
         this.durations = new ArrayList<>(Arrays.asList(1, 2));
-        this.emojiList = new ArrayList<>(Arrays.asList("🫘", "🌱", "🥔"));
+        this.emojiList = new ArrayList<>(Arrays.asList("🌱", "\uD83C\uDF3F", "🥔"));
     }
 }

@@ -11,6 +11,7 @@ public abstract class Plant {
     public String name;
     public double buyMoney;
     public double sellMoney;
+    public int price;
     public ArrayList<Integer> durations;
     public ArrayList<String> emojiList;
     public boolean collectAuthorized = false;
@@ -24,7 +25,7 @@ public abstract class Plant {
             );
 
             timeline.setOnFinished(e -> {
-                this.collectAuthorized = true;
+                collectAuthorized = true;
             });
 
             timeline.play();

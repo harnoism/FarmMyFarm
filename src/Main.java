@@ -7,9 +7,10 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
+        //Player player = new Player(500);
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/interface.fxml"));
         primaryStage.setTitle("Farm My Farm");
-        primaryStage.setScene(new Scene(root, 600, 600));
+        primaryStage.setScene(new Scene(root, 980, 700));
         primaryStage.show();
     }
 

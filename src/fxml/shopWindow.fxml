@@ -1,13 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="380.0" prefWidth="530.0"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="Controller.ShopController">
+    <children>
 
-<AnchorPane fx:controller="ShopWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="380.0" prefWidth="530.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ListView layoutX="126.0" layoutY="39.0" prefHeight="301.0" prefWidth="277.0" />
-      <Button layoutX="445.0" layoutY="328.0" mnemonicParsing="false" onAction="#fermerFenetre" text="Back" />
-   </children>
+        <Label fx:id="moneyLabel" layoutX="20.0" layoutY="10.0"
+               text="Argent : 500"
+               style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+        <TabPane layoutX="10.0" layoutY="40.0" prefHeight="320.0" prefWidth="510.0"
+                 tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+
+                <Tab text="🌱 Plantes">
+                    <content>
+                        <AnchorPane prefHeight="280.0" prefWidth="510.0">
+                            <children>
+                                <VBox spacing="12.0" layoutX="20.0" layoutY="15.0">
+
+                                    <HBox spacing="20.0" alignment="CENTER_LEFT">
+                                        <Label text="🥔 Patate" prefWidth="120" style="-fx-font-size: 14px;"/>
+                                        <Label fx:id="patateSeeds" text="Seeds : 0" prefWidth="80"/>
+                                        <Button text="Acheter" onAction="#buyPatateSeed"/>
+                                    </HBox>
+
+                                    <HBox spacing="20.0" alignment="CENTER_LEFT">
+                                        <Label text="🌽 Maïs" prefWidth="120" style="-fx-font-size: 14px;"/>
+                                        <Label fx:id="maisSeeds" text="Seeds : 0" prefWidth="80"/>
+                                        <Button text="Acheter" onAction="#buyMaisSeed"/>
+                                    </HBox>
+
+                                    <HBox spacing="20.0" alignment="CENTER_LEFT">
+                                        <Label text="🥕 Carotte" prefWidth="120" style="-fx-font-size: 14px;"/>
+                                        <Label fx:id="carrotSeeds" text="Seeds : 0" prefWidth="80"/>
+                                        <Button text="Acheter" onAction="#buyCarrotSeed"/>
+                                    </HBox>
+
+                                    <HBox spacing="20.0" alignment="CENTER_LEFT">
+                                        <Label text="🍅 Tomate" prefWidth="120" style="-fx-font-size: 14px;"/>
+                                        <Label fx:id="tomateSeeds" text="Seeds : 0" prefWidth="80"/>
+                                        <Button text="Acheter" onAction="#buyTomateSeed"/>
+                                    </HBox>
+
+                                    <HBox spacing="20.0" alignment="CENTER_LEFT">
+                                        <Label text="🥦 Brocoli" prefWidth="120" style="-fx-font-size: 14px;"/>
+                                        <Label fx:id="brocoliSeeds" text="Seeds : 0" prefWidth="80"/>
+                                        <Button text="Acheter" onAction="#buyBrocoliSeed"/>
+                                    </HBox>
+                                </VBox>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+                <Tab text="🐄 Animaux">
+                    <content>
+                        <AnchorPane prefHeight="280.0" prefWidth="510.0">
+                            <children>
+                                <Label layoutX="20.0" layoutY="20.0"
+                                       text="Bientôt disponible..."
+                                       style="-fx-font-size: 14px;"/>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+
+            </tabs>
+        </TabPane>
+    </children>
 </AnchorPane>

@@ -17,17 +17,18 @@ public class ShopController {
 
     @FXML private Label moneyLabel;
 
-    @FXML private Label patateInventaire;
-    @FXML private Label maisInventaire;
-    @FXML private Label carrotInventaire;
-    @FXML private Label tomateInventaire;
-    @FXML private Label brocoliInventaire;
 
     @FXML private Label patateStocks;
     @FXML private Label maisStocks;
     @FXML private Label carrotStocks;
     @FXML private Label tomateStocks;
     @FXML private Label brocoliStocks;
+
+    @FXML private Label patateSeeds;
+    @FXML private Label maisSeeds;
+    @FXML private Label carrotSeeds;
+    @FXML private Label tomateSeeds;
+    @FXML private Label brocoliSeeds;
 
     public static ShopController instance;
 
@@ -41,68 +42,31 @@ public class ShopController {
 
     public void updateMoneyLabel() {
         if (moneyLabel != null) {
-            moneyLabel.setText(LandFarm.player.getMoney() + " 💰");
+            moneyLabel.setText(String.valueOf(LandFarm.player.getMoney()));
         }
     }
 
-    @FXML
-    public void buyPatateSeed() {
-        Plant plant = new Patate();
-        if (LandFarm.player.getMoney() >= plant.buyMoney) {
-            LandFarm.player.removeMoney(plant.buyMoney);
-            Stocks.addSeed("Patate", 1);
-            updateMoneyLabel();
-            updateAllInventaire();
-            LandFarm.instance.updateMoney();
-        }
+
+    // Labels stocks = récoltes
+    public void updateAllStocks() {
+        if (patateStocks != null)
+            patateStocks.setText("Patate: " + Stocks.stocks.getOrDefault("Patate", 0));
+        if (maisStocks != null)
+            maisStocks.setText("Mais: " + Stocks.stocks.getOrDefault("Mais", 0));
+        if (carrotStocks != null)
+            carrotStocks.setText("Carrot: " + Stocks.stocks.getOrDefault("Carrot", 0));
+        if (tomateStocks != null)
+            tomateStocks.setText("Tomate: " + Stocks.stocks.getOrDefault("Tomate", 0));
+        if (brocoliStocks != null)
+            brocoliStocks.setText("Brocoli: " + Stocks.stocks.getOrDefault("Brocoli", 0));
     }
 
-    @FXML
-    public void buyMaisSeed() {
-        Plant plant = new Mais();
-        if (LandFarm.player.getMoney() >= plant.buyMoney) {
-            LandFarm.player.removeMoney(plant.buyMoney);
-            Stocks.addSeed("Mais", 1);
-            updateMoneyLabel();
-            updateAllInventaire();
-            LandFarm.instance.updateMoney();
-        }
-    }
-
-    @FXML
-    public void buyCarrotSeed() {
-        Plant plant = new Carrot();
-        if (LandFarm.player.getMoney() >= plant.buyMoney) {
-            LandFarm.player.removeMoney(plant.buyMoney);
-            Stocks.addSeed("Carrot", 1);
-            updateMoneyLabel();
-            updateAllInventaire();
-            LandFarm.instance.updateMoney();
-        }
-    }
-
-    @FXML
-    public void buyBrocoliSeed() {
-        Plant plant = new Brocoli();
-        if (LandFarm.player.getMoney() >= plant.buyMoney) {
-            LandFarm.player.removeMoney(plant.buyMoney);
-            Stocks.addSeed("Brocoli", 1);
-            updateMoneyLabel();
-            updateAllInventaire();
-            LandFarm.instance.updateMoney();
-        }
-    }
-
-    @FXML
-    public void buyTomateSeed() {
-        Plant plant = new Tomate();
-        if (LandFarm.player.getMoney() >= plant.buyMoney) {
-            LandFarm.player.removeMoney(plant.buyMoney);
-            Stocks.addSeed("Tomate", 1);
-            updateMoneyLabel();
-            updateAllInventaire();
-            LandFarm.instance.updateMoney();
-        }
+    public void updateAllInventaire() {
+        if (patateSeeds != null) patateSeeds.setText("Patate: " + Stocks.seeds.getOrDefault("Patate", 0));
+        if (maisSeeds != null)   maisSeeds.setText("Mais: "     + Stocks.seeds.getOrDefault("Mais", 0));
+        if (carrotSeeds != null) carrotSeeds.setText("Carrot: " + Stocks.seeds.getOrDefault("Carrot", 0));
+        if (tomateSeeds != null) tomateSeeds.setText("Tomate: " + Stocks.seeds.getOrDefault("Tomate", 0));
+        if (brocoliSeeds != null)brocoliSeeds.setText("Brocoli: "+ Stocks.seeds.getOrDefault("Brocoli", 0));
     }
 
     @FXML
@@ -122,35 +86,7 @@ public class ShopController {
         LandFarm.player.addMoney(totalmoney);
         updateMoneyLabel();
         updateAllStocks();
-        LandFarm.instance.updateMoney();
-    }
-
-
-    public void updateAllInventaire() {
-        if (patateInventaire != null)
-            patateInventaire.setText("Patate: " + Stocks.seeds.getOrDefault("Patate", 0));
-        if (maisInventaire != null)
-            maisInventaire.setText("Mais: " + Stocks.seeds.getOrDefault("Mais", 0));
-        if (carrotInventaire != null)
-            carrotInventaire.setText("Carrot: " + Stocks.seeds.getOrDefault("Carrot", 0));
-        if (tomateInventaire != null)
-            tomateInventaire.setText("Tomate: " + Stocks.seeds.getOrDefault("Tomate", 0));
-        if (brocoliInventaire != null)
-            brocoliInventaire.setText("Brocoli: " + Stocks.seeds.getOrDefault("Brocoli", 0));
-    }
-
-    // Labels stocks = récoltes
-    public void updateAllStocks() {
-        if (patateStocks != null)
-            patateStocks.setText("Patate: " + Stocks.stocks.getOrDefault("Patate", 0));
-        if (maisStocks != null)
-            maisStocks.setText("Mais: " + Stocks.stocks.getOrDefault("Mais", 0));
-        if (carrotStocks != null)
-            carrotStocks.setText("Carrot: " + Stocks.stocks.getOrDefault("Carrot", 0));
-        if (tomateStocks != null)
-            tomateStocks.setText("Tomate: " + Stocks.stocks.getOrDefault("Tomate", 0));
-        if (brocoliStocks != null)
-            brocoliStocks.setText("Brocoli: " + Stocks.stocks.getOrDefault("Brocoli", 0));
+        if (LandFarm.instance != null) LandFarm.instance.updateMoney();
     }
 
     @FXML
@@ -164,6 +100,11 @@ public class ShopController {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.initOwner(((Node) event.getSource()).getScene().getWindow());
             stage.showAndWait();
+
+            updateMoneyLabel();
+            updateAllStocks();
+            updateAllInventaire();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

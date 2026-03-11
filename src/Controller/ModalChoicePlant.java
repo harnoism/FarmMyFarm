@@ -4,12 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class ModalChoicePlant {
     @FXML
-    public GridPane root;
+    public AnchorPane root;
     @FXML
     public Button btnPatate;
     @FXML
@@ -20,6 +21,13 @@ public class ModalChoicePlant {
     public Button btnCarrot;
     @FXML
     public Button btnMais;
+
+    @FXML
+    public Button btnPoule;
+    @FXML
+    public Button btnVache;
+    @FXML
+    public Button btnCochon;
     @FXML
     private String selectedPlant = null;
 
@@ -43,7 +51,8 @@ public class ModalChoicePlant {
                 "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 6);" +
                 "-fx-translate-y: -2;";
 
-        for (Button btn : new Button[]{btnPatate, btnMais, btnCarrot, btnBrocoli, btnTomate}) {
+
+        for (Button btn : new Button[]{btnPatate, btnMais, btnCarrot, btnBrocoli, btnTomate, btnPoule, btnVache, btnCochon}) {
             btn.setStyle(base);
             btn.setOnMouseEntered(e -> btn.setStyle(hover));
             btn.setOnMouseExited(e -> btn.setStyle(base));
@@ -80,6 +89,27 @@ public class ModalChoicePlant {
     public void chooseBrocoli() {
         selectedPlant = "Brocoli";
         System.out.println("Brocoli choisis");
+        close();
+    }
+
+    @FXML
+    public void choosePoule() {
+        selectedPlant = "Poule";
+        System.out.println("Poule");
+        close();
+    }
+
+    @FXML
+    public void chooseVache() {
+        selectedPlant = "Vache";
+        System.out.println("Vache");
+        close();
+    }
+
+    @FXML
+    public void chooseCochon() {
+        selectedPlant = "Cochon";
+        System.out.println("Cochon");
         close();
     }
 

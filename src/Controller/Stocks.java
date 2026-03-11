@@ -7,6 +7,7 @@ public class Stocks {
     public static Stocks instance = new Stocks();
     public static Map<String, Integer> stocks = new HashMap<>();
     public static Map<String, Integer> seeds = new HashMap<>();
+    public static Map<String, Integer> animaux = new HashMap<>();
 
     public void add(String plant, int qty) {
         int current = stocks.getOrDefault(plant, 0);
@@ -15,6 +16,10 @@ public class Stocks {
 
     public static void addSeed(String plant, int amount) {
         seeds.put(plant, seeds.getOrDefault(plant, 0) + amount);
+    }
+
+    public static void addAnimal(String plant, int amount) {
+        animaux.put(plant, animaux.getOrDefault(plant, 0) + amount);
     }
 
     public static boolean removeSeed(String plant) {

@@ -12,7 +12,7 @@
             prefHeight="380.0" prefWidth="530.0"
             xmlns="http://javafx.com/javafx/25"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Controller.ShopController">
+            fx:controller="Controller.ShopWindow">
     <children>
 
         <Label fx:id="moneyLabel" layoutX="20.0" layoutY="10.0"
@@ -54,7 +54,8 @@
                                     </HBox>
 
                                     <HBox spacing="20.0" alignment="CENTER_LEFT">
-                                        <Label text="🥦 Brocoli" prefWidth="120" style="-fx-font-size: 14px;"/>
+                                        <Label text="🥦 Brocoli" prefWidth="120"
+                                               style="-fx-font-size: 14px; -fx-font-family: 'Segoe UI Emoji';"/>
                                         <Label fx:id="brocoliSeeds" text="Seeds : 0" prefWidth="80"/>
                                         <Button text="Acheter" onAction="#buyBrocoliSeed"/>
                                     </HBox>
@@ -64,18 +65,35 @@
                     </content>
                 </Tab>
 
-                <Tab text="🐄 Animaux">
+                <Tab text="🐾 Animaux">
                     <content>
                         <AnchorPane prefHeight="280.0" prefWidth="510.0">
                             <children>
-                                <Label layoutX="20.0" layoutY="20.0"
-                                       text="Bientôt disponible..."
-                                       style="-fx-font-size: 14px;"/>
+                                <VBox spacing="12.0" layoutX="20.0" layoutY="15.0">
+
+                                    <HBox spacing="20.0" alignment="CENTER_LEFT">
+                                        <Label text="🐔 Poule" prefWidth="120" style="-fx-font-size: 14px;"/>
+                                        <Label fx:id="pouleBuy" text="Animals : 0" prefWidth="80"/>
+                                        <Button text="Acheter" onAction="#buypoule"/>
+                                    </HBox>
+
+                                    <HBox spacing="20.0" alignment="CENTER_LEFT">
+                                        <Label text="🐄 Vache" prefWidth="120" style="-fx-font-size: 14px;"/>
+                                        <Label fx:id="vacheBuy" text="Animals : 0" prefWidth="80"/>
+                                        <Button text="Acheter" onAction="#buyvache"/>
+                                    </HBox>
+
+                                    <HBox spacing="20.0" alignment="CENTER_LEFT">
+                                        <Label text="🐷 Cochon" prefWidth="120" style="-fx-font-size: 14px;"/>
+                                        <Label fx:id="cochonBuy" text="Animals : 0" prefWidth="80"/>
+                                        <Button text="Acheter" onAction="#buycochon"/>
+                                    </HBox>
+
+                                </VBox>
                             </children>
                         </AnchorPane>
                     </content>
                 </Tab>
-
             </tabs>
         </TabPane>
     </children>

@@ -21,8 +21,8 @@ public class LandFarm {
         int rows = 6;
         int columns = 9;
 
-        gridPane.setHgap(3); // espace horizontal entre les cases
-        gridPane.setVgap(3);
+        gridPane.setHgap(7); // espace horizontal entre les cases
+        gridPane.setVgap(7);
 
         updateMoney();
 
@@ -45,14 +45,10 @@ public class LandFarm {
     }
 
     public void updateMoney() {
-        if (moneyLabel != null) {
-            moneyLabel.setText(String.valueOf(player.getMoney()));
-        }
-        /*
         if (ShopController.instance != null) {
             ShopController.instance.updateMoneyLabel();
         }
-        */
+
     }
 
 }

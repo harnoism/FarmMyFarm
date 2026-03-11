@@ -22,7 +22,9 @@ public class Land {
                     "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #66BB6A, #4CAF50);" +
                     "-fx-background-radius: 6px;" +
                     "-fx-border-width: 1px;" +
-                    "-fx-translate-y: 0;";
+                    "-fx-translate-y: 0;"+
+                    "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 6, 0, 0, 3);";
+
 
     private static final String styleHover =
             "-fx-font-size: 24px;" +
@@ -46,9 +48,9 @@ public class Land {
 
     public Land() {
         this.land = new Button("     ");
-        this.land.setPrefSize(80, 80);
-        this.land.setMinSize(80, 80);
-        this.land.setMaxSize(80, 80);
+        this.land.setPrefSize(90, 70);
+        this.land.setMinSize(90, 70);
+        this.land.setMaxSize(90, 70);
         this.land.setStyle(styleBase);
 
         // Hover uniquement si pas planté
@@ -67,7 +69,7 @@ public class Land {
         this.typePlant = null;
         this.plant = null;
 
-        // Le clic ouvre le modal, puis plante
+
         land.setOnAction(e -> {
             if (this.plant == null) {
                 // Ouvre le modal et attend le choix
@@ -76,11 +78,15 @@ public class Land {
 
                 if (choix == null) return; // Annulé
 
+                this.typePlant = choix;
                 if (Stocks.removeSeed(typePlant)) {
 
                     addPlant();
                     isPlanted = true;
                     land.setStyle(stylePlanted);
+                    if (ShopController.instance != null) {
+                        ShopController.instance.updateAllInventaire();
+                    }
 
                 } else {
 
@@ -88,27 +94,32 @@ public class Land {
                 }
             } else {
                 // Plante déjà présente : récolter si possible
-                this.plant.growthDuration(this.land);
+
 
                 if (this.plant.collectAuthorized) {
                     String plantName = this.plant.name != null ? this.plant.name : "Inconnu";
-                    Stocks.instance.add(plantName, 1);
 
-                    LandFarm.player.addMoney(this.plant.price);
+                    Stocks.instance.add(plantName, 1);
+                    int gainArgent = this.plant.price > 0 ? this.plant.price : (int) this.plant.sellMoney;
+                    LandFarm.player.addMoney(gainArgent);
+
                     if (LandFarm.instance != null) {
                         LandFarm.instance.updateMoney();
                     }
-
                     if (ShopController.instance != null) {
                         ShopController.instance.updateAllStocks();
+                        ShopController.instance.updateAllInventaire();
                     }
 
                     this.plant.collectAuthorized = false;
                     this.plant = null; // Réinitialise la parcelle
+                    this.typePlant = null;
                     isPlanted = false;
                     land.setText("     ");
                     land.setStyle(styleBase);
                     System.out.println(Stocks.stocks);
+                } else {
+                    System.out.println("Plante pas encore prête !");
                 }
             }
         });

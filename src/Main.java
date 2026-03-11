@@ -10,7 +10,8 @@ public class Main extends Application {
         //Player player = new Player(500);
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/interface.fxml"));
         primaryStage.setTitle("Farm My Farm");
-        primaryStage.setScene(new Scene(root, 980, 700));
+        primaryStage.setScene(new Scene(root, 1250, 750));
+        //primaryStage.setFullScreen(true);
         primaryStage.show();
     }
 

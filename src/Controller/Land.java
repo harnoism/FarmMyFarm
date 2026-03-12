@@ -144,6 +144,27 @@ public class Land {
         if (typePlant.equals("Brocoli")) {
             this.plant = new Brocoli();
         }
+        if (typePlant.equals("Poule")) {
+            Animals.Chicken chicken = new Animals.Chicken();
+            chicken.startEatingCycle();
+            chicken.growthDuration(this.land);
+            this.plant = null;
+            return;
+        }
+        if (typePlant.equals("Cochon")) {
+            Animals.Pig pig = new Animals.Pig();
+            pig.startEatingCycle();
+            pig.growthDuration(this.land);
+            this.plant = null;
+            return;
+        }
+        if (typePlant.equals("Vache")) {
+            Animals.Cow cow = new Animals.Cow();
+            cow.startEatingCycle();
+            cow.growthDuration(this.land);
+            this.plant = null;
+            return;
+        }
         if (this.plant != null) {
             // Lance la croissance IMMÉDIATEMENT après la plantation
             this.plant.growthDuration(this.land);

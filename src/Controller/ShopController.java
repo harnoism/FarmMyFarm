@@ -23,12 +23,16 @@ public class ShopController {
     @FXML private Label carrotStocks;
     @FXML private Label tomateStocks;
     @FXML private Label brocoliStocks;
+    @FXML private Label oeufStocks;
+    @FXML private Label baconStocks;
+    @FXML private Label laitStocks;
 
     @FXML private Label patateSeeds;
     @FXML private Label maisSeeds;
     @FXML private Label carrotSeeds;
     @FXML private Label tomateSeeds;
     @FXML private Label brocoliSeeds;
+
 
     public static ShopController instance;
 
@@ -59,6 +63,12 @@ public class ShopController {
             tomateStocks.setText("Tomate: " + Stocks.stocks.getOrDefault("Tomate", 0));
         if (brocoliStocks != null)
             brocoliStocks.setText("Brocoli: " + Stocks.stocks.getOrDefault("Brocoli", 0));
+        if (oeufStocks != null)
+            oeufStocks.setText("Oeufs: " + Stocks.stocks.getOrDefault("Oeuf", 0));
+        if (baconStocks != null)
+            baconStocks.setText("Bacon: " + Stocks.stocks.getOrDefault("Bacon", 0));
+        if (laitStocks != null)
+            laitStocks.setText("Lait: " + Stocks.stocks.getOrDefault("Lait", 0));
     }
 
     public void updateAllInventaire() {

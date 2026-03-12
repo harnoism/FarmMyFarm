@@ -49,7 +49,7 @@
 
                         <Button fx:id="btnVache" onAction="#chooseVache" prefHeight="60" prefWidth="82" text="Vache" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                        <Button fx:id="btnCochon" onAction="#chooseCochon" prefHeight="60" prefWidth="82" text="Vache" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                        <Button fx:id="btnCochon" onAction="#chooseCochon" prefHeight="60" prefWidth="82" text="Cochon" GridPane.columnIndex="2" GridPane.rowIndex="0" />
                   <columnConstraints>
                      <ColumnConstraints />
                      <ColumnConstraints />

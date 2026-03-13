@@ -1,17 +1,20 @@
 package Controller;
 
+import Animals.Chicken;
+import Animals.Cow;
+import Animals.Pig;
 import Plants.*;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-import java.lang.classfile.Label;
-
 public class Land {
-    @FXML
+
     public Button land;
     public Plant plant;
     public String typePlant;
-    private boolean isPlanted = false;
+    public boolean isAnimal = false;
+    public boolean isPlanted = false;
+    public boolean isUnlocked;
+    public int unlockCost;
 
     // Styles
     private static final String styleBase =
@@ -22,9 +25,18 @@ public class Land {
                     "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #66BB6A, #4CAF50);" +
                     "-fx-background-radius: 6px;" +
                     "-fx-border-width: 1px;" +
-                    "-fx-translate-y: 0;"+
+                    "-fx-translate-y: 0;" +
                     "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 6, 0, 0, 3);";
 
+    private static final String styleLocked =
+            "-fx-font-size: 14px;" +
+                    "-fx-font-family: 'Segoe UI Emoji';" +
+                    "-fx-border-radius: 6px;" +
+                    "-fx-border-color: #222;" +
+                    "-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #555, #333);" +
+                    "-fx-background-radius: 6px;" +
+                    "-fx-text-fill: #FFD700;" +
+                    "-fx-border-width: 1px;";
 
     private static final String styleHover =
             "-fx-font-size: 24px;" +
@@ -46,128 +58,173 @@ public class Land {
                     "-fx-border-width: 1px;" +
                     "-fx-translate-y: 2;";
 
-    public Land() {
-        this.land = new Button("     ");
+    public Land(boolean unlocked, int unlockCost) {
+        this.isUnlocked = unlocked;
+        this.unlockCost = unlockCost;
+        this.land = new Button();
         this.land.setPrefSize(90, 70);
         this.land.setMinSize(90, 70);
         this.land.setMaxSize(90, 70);
-        this.land.setStyle(styleBase);
 
-        // Hover uniquement si pas planté
+        if (!isUnlocked) {
+            land.setText("🔒 " + unlockCost);
+            land.setStyle(styleLocked);
+        } else {
+            land.setText("     ");
+            land.setStyle(styleBase);
+        }
+
         this.land.setOnMouseEntered(e -> {
-            if (!isPlanted) {
-                land.setStyle(styleHover);
-            }
+            if (isUnlocked && !isPlanted) land.setStyle(styleHover);
         });
 
         this.land.setOnMouseExited(e -> {
-            if (!isPlanted) {
-                land.setStyle(styleBase);
-            }
+            if (isUnlocked && !isPlanted) land.setStyle(styleBase);
         });
 
-        this.typePlant = null;
-        this.plant = null;
+        land.setOnAction(e -> handleClick());
+    }
 
+    private void handleClick() {
+        // Cas 1 : parcelle verrouillée
+        if (!isUnlocked) {
+            if (LandFarm.player.getMoney() >= unlockCost) {
+                LandFarm.player.removeMoney(unlockCost);
+                isUnlocked = true;
+                land.setText("     ");
+                land.setStyle(styleBase);
+                if (ShopController.instance != null) ShopController.instance.updateMoneyLabel();
+                if (LandFarm.instance != null) LandFarm.instance.updateMoney();
+                System.out.println("Parcelle débloquée !");
+            } else {
+                System.out.println("Pas assez d'argent ! Il faut " + unlockCost);
+            }
+            return;
+        }
 
-        land.setOnAction(e -> {
-            if (this.plant == null) {
-                // Ouvre le modal et attend le choix
-                ModalChoiceController modal = new ModalChoiceController();
-                String choix = modal.ouvrirFenetre();
+        // Cas 2 : parcelle vide — choisir quoi planter
+        if (!isPlanted) {
+            ModalChoiceController modal = new ModalChoiceController();
+            String choix = modal.ouvrirFenetre();
+            if (choix == null) return;
 
-                if (choix == null) return; // Annulé
+            this.typePlant = choix;
+            boolean isAnimalChoice = choix.equals("Poule") || choix.equals("Vache") || choix.equals("Cochon");
 
-                this.typePlant = choix;
+            if (isAnimalChoice) {
+                // Les animaux ne nécessitent pas de graine
+                this.isAnimal = true;
+                isPlanted = true;
+                land.setStyle(stylePlanted);
+                addPlant();
+                if (ShopController.instance != null) ShopController.instance.updateAllInventaire();
+            } else {
+                // Les plantes nécessitent une graine
                 if (Stocks.removeSeed(typePlant)) {
-
-                    addPlant();
+                    this.isAnimal = false;
                     isPlanted = true;
                     land.setStyle(stylePlanted);
-                    if (ShopController.instance != null) {
-                        ShopController.instance.updateAllInventaire();
-                    }
-
+                    addPlant();
+                    if (ShopController.instance != null) ShopController.instance.updateAllInventaire();
                 } else {
-
-                    System.out.println("Pas de graines !");
-                }
-            } else {
-                // Plante déjà présente : récolter si possible
-
-
-                if (this.plant.collectAuthorized) {
-                    String plantName = this.plant.name != null ? this.plant.name : "Inconnu";
-
-                    Stocks.instance.add(plantName, 1);
-                    int gainArgent = this.plant.price > 0 ? this.plant.price : (int) this.plant.sellMoney;
-                    LandFarm.player.addMoney(gainArgent);
-
-                    if (LandFarm.instance != null) {
-                        LandFarm.instance.updateMoney();
-                    }
-                    if (ShopController.instance != null) {
-                        ShopController.instance.updateAllStocks();
-                        ShopController.instance.updateAllInventaire();
-                    }
-
-                    this.plant.collectAuthorized = false;
-                    this.plant = null; // Réinitialise la parcelle
+                    System.out.println("Pas de graines pour : " + typePlant);
                     this.typePlant = null;
-                    isPlanted = false;
-                    land.setText("     ");
-                    land.setStyle(styleBase);
-                    System.out.println(Stocks.stocks);
-                } else {
-                    System.out.println("Plante pas encore prête !");
                 }
             }
-        });
+            return;
+        }
+
+        // Cas 3 : animal posé — pas de récolte manuelle
+        if (isAnimal) {
+            System.out.println("C'est un animal, il produit automatiquement !");
+            return;
+        }
+
+        // Cas 4 : plante prête à récolter
+        if (this.plant != null && this.plant.collectAuthorized) {
+            String plantName = this.plant.name != null ? this.plant.name : "Inconnu";
+            Stocks.stocks.merge(plantName, 1, Integer::sum);
+            LandFarm.player.addMoney((int) this.plant.sellMoney);
+
+            if (LandFarm.instance != null) LandFarm.instance.updateMoney();
+            if (ShopController.instance != null) {
+                ShopController.instance.updateAllStocks();
+                ShopController.instance.updateAllInventaire();
+            }
+
+            // Remet la parcelle à zéro
+            this.plant = null;
+            this.typePlant = null;
+            this.isAnimal = false;
+            isPlanted = false;
+            land.setText("     ");
+            land.setGraphic(null);
+            land.setStyle(styleBase);
+
+        } else {
+            System.out.println("Plante pas encore prête !");
+        }
     }
 
     public void addPlant() {
-
         if (typePlant == null) return;
 
-        if (typePlant.equals("Patate")) {
-            this.plant = new Patate();
+        switch (typePlant) {
+            case "Patate"  -> { this.plant = new Patate();  this.plant.growthDuration(this.land); }
+            case "Mais"    -> { this.plant = new Mais();    this.plant.growthDuration(this.land); }
+            case "Tomate"  -> { this.plant = new Tomate();  this.plant.growthDuration(this.land); }
+            case "Carrot"  -> { this.plant = new Carrot();  this.plant.growthDuration(this.land); }
+            case "Brocoli" -> { this.plant = new Brocoli(); this.plant.growthDuration(this.land); }
+            case "Poule" -> {
+                Chicken chicken = new Chicken();
+                chicken.startEatingCycle();
+                chicken.growthDuration(this.land);
+            }
+            case "Vache" -> {
+                Cow cow = new Cow();
+                cow.startEatingCycle();
+                cow.growthDuration(this.land);
+            }
+            case "Cochon" -> {
+                Pig pig = new Pig();
+                pig.startEatingCycle();
+                pig.growthDuration(this.land);
+            }
         }
-        if (typePlant.equals("Mais")) {
-            this.plant = new Mais();
-        }
-        if (typePlant.equals("Tomate")) {
-            this.plant = new Tomate();
-        }
-        if (typePlant.equals("Carrot")) {
-            this.plant = new Carrot();
-        }
-        if (typePlant.equals("Brocoli")) {
-            this.plant = new Brocoli();
-        }
-        if (typePlant.equals("Poule")) {
-            Animals.Chicken chicken = new Animals.Chicken();
-            chicken.startEatingCycle();
-            chicken.growthDuration(this.land);
-            this.plant = null;
+    }
+
+    // Pour la sauvegarde
+    public SaveData.LandData getLandData() {
+        boolean collectReady = (plant != null && plant.collectAuthorized);
+        return new SaveData.LandData(isUnlocked, unlockCost, typePlant, isAnimal, collectReady);
+    }
+
+    // Pour le chargement
+    public void restore(SaveData.LandData data) {
+        this.isUnlocked = data.isUnlocked;
+        this.unlockCost = data.unlockCost;
+
+        if (!isUnlocked) {
+            land.setText("🔒 " + unlockCost);
+            land.setStyle(styleLocked);
             return;
         }
-        if (typePlant.equals("Cochon")) {
-            Animals.Pig pig = new Animals.Pig();
-            pig.startEatingCycle();
-            pig.growthDuration(this.land);
-            this.plant = null;
-            return;
-        }
-        if (typePlant.equals("Vache")) {
-            Animals.Cow cow = new Animals.Cow();
-            cow.startEatingCycle();
-            cow.growthDuration(this.land);
-            this.plant = null;
-            return;
-        }
-        if (this.plant != null) {
-            // Lance la croissance IMMÉDIATEMENT après la plantation
-            this.plant.growthDuration(this.land);
+
+        land.setText("     ");
+        land.setStyle(styleBase);
+
+        if (data.typePlant == null) return;
+
+        this.typePlant = data.typePlant;
+        this.isAnimal = data.isAnimal;
+        this.isPlanted = true;
+        land.setStyle(stylePlanted);
+
+        addPlant();
+
+        if (!isAnimal && data.collectAuthorized && this.plant != null) {
+            this.plant.collectAuthorized = true;
+            land.setText("✅");
         }
     }
 
@@ -175,4 +232,3 @@ public class Land {
         return land;
     }
 }
-

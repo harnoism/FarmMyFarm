@@ -8,7 +8,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         //Player player = new Player(500);
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/interface.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/menu.fxml"));
         primaryStage.setTitle("Farm My Farm");
         primaryStage.setScene(new Scene(root, 1250, 750));
         //primaryStage.setFullScreen(true);

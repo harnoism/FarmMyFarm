@@ -15,23 +15,77 @@ import java.io.IOException;
 
 public class ShopController {
 
-    @FXML private Label moneyLabel;
+    @FXML
+    private Label moneyLabel;
 
 
-    @FXML private Label patateStocks;
-    @FXML private Label maisStocks;
-    @FXML private Label carrotStocks;
-    @FXML private Label tomateStocks;
-    @FXML private Label brocoliStocks;
-    @FXML private Label oeufStocks;
-    @FXML private Label baconStocks;
-    @FXML private Label laitStocks;
+    @FXML
+    private Label patateStocks;
+    @FXML
+    private Label maisStocks;
+    @FXML
+    private Label carrotStocks;
+    @FXML
+    private Label tomateStocks;
+    @FXML
+    private Label brocoliStocks;
+    @FXML
+    private Label oeufStocks;
+    @FXML
+    private Label baconStocks;
+    @FXML
+    private Label laitStocks;
 
-    @FXML private Label patateSeeds;
-    @FXML private Label maisSeeds;
-    @FXML private Label carrotSeeds;
-    @FXML private Label tomateSeeds;
-    @FXML private Label brocoliSeeds;
+    @FXML
+    private Label patateSeeds;
+    @FXML
+    private Label maisSeeds;
+    @FXML
+    private Label carrotSeeds;
+    @FXML
+    private Label tomateSeeds;
+    @FXML
+    private Label brocoliSeeds;
+
+    @FXML
+    public void sellAllPatate() {
+        sellStock("Patate", new Patate().sellMoney);
+    }
+
+    @FXML
+    public void sellAllMais() {
+        sellStock("Mais", new Mais().sellMoney);
+    }
+
+    @FXML
+    public void sellAllCarrot() {
+        sellStock("Carrot", new Carrot().sellMoney);
+    }
+
+    @FXML
+    public void sellAllTomate() {
+        sellStock("Tomate", new Tomate().sellMoney);
+    }
+
+    @FXML
+    public void sellAllBrocoli() {
+        sellStock("Brocoli", new Brocoli().sellMoney);
+    }
+
+    @FXML
+    public void sellAllOeuf() {
+        sellStock("Oeuf", 50);
+    }
+
+    @FXML
+    public void sellAllBacon() {
+        sellStock("Bacon", 250);
+    }
+
+    @FXML
+    public void sellAllLait() {
+        sellStock("Lait", 150);
+    }
 
 
     public static ShopController instance;
@@ -73,10 +127,10 @@ public class ShopController {
 
     public void updateAllInventaire() {
         if (patateSeeds != null) patateSeeds.setText("Patate: " + Stocks.seeds.getOrDefault("Patate", 0));
-        if (maisSeeds != null)   maisSeeds.setText("Mais: "     + Stocks.seeds.getOrDefault("Mais", 0));
+        if (maisSeeds != null) maisSeeds.setText("Mais: " + Stocks.seeds.getOrDefault("Mais", 0));
         if (carrotSeeds != null) carrotSeeds.setText("Carrot: " + Stocks.seeds.getOrDefault("Carrot", 0));
         if (tomateSeeds != null) tomateSeeds.setText("Tomate: " + Stocks.seeds.getOrDefault("Tomate", 0));
-        if (brocoliSeeds != null)brocoliSeeds.setText("Brocoli: "+ Stocks.seeds.getOrDefault("Brocoli", 0));
+        if (brocoliSeeds != null) brocoliSeeds.setText("Brocoli: " + Stocks.seeds.getOrDefault("Brocoli", 0));
     }
 
     @FXML
@@ -85,11 +139,11 @@ public class ShopController {
         for (String plant : Stocks.stocks.keySet()) {
             int quantity = Stocks.stocks.get(plant);
             Plant plants = null;
-            if (plant.equals("Patate"))  plants = new Patate();
-            if (plant.equals("Mais"))    plants = new Mais();
-            if (plant.equals("Tomate"))  plants = new Tomate();
+            if (plant.equals("Patate")) plants = new Patate();
+            if (plant.equals("Mais")) plants = new Mais();
+            if (plant.equals("Tomate")) plants = new Tomate();
             if (plant.equals("Brocoli")) plants = new Brocoli();
-            if (plant.equals("Carrot"))  plants = new Carrot();
+            if (plant.equals("Carrot")) plants = new Carrot();
             if (plants != null) totalmoney += quantity * plants.sellMoney;
             Stocks.stocks.put(plant, 0);
         }
@@ -98,6 +152,26 @@ public class ShopController {
         updateAllStocks();
         if (LandFarm.instance != null) LandFarm.instance.updateMoney();
     }
+
+    private void sellStock(String itemName, double sellPrice) {
+        int quantity = Stocks.stocks.getOrDefault(itemName, 0);
+        if (quantity > 0) {
+            LandFarm.player.addMoney((int) (quantity * sellPrice));
+            Stocks.stocks.put(itemName, 0);
+            updateMoneyLabel();
+            updateAllStocks();
+            if (LandFarm.instance != null) LandFarm.instance.updateMoney();
+        }
+    }
+
+
+
+    @FXML
+    public void saveAndQuit(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        SaveManager.saveAndQuit(stage);
+    }
+
 
     @FXML
     public void ouvrirFenetre(ActionEvent event) {

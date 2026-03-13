@@ -14,4 +14,8 @@ public class Player {
     public void removeMoney(double value) {
         moneyLabel -= (int) value;
     }
+
+    public void setMoney(double money) {
+
+    }
 }

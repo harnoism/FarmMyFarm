@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="650.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ShopController">
+<BorderPane prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ShopController">
 
     <center>
         <fx:include source="landFarm.fxml" BorderPane.alignment="CENTER" />
@@ -18,7 +18,7 @@
    <top>
       <Group BorderPane.alignment="CENTER">
          <children>
-            <Pane layoutX="14.0" layoutY="140.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="48.0" prefWidth="936.0">
+            <Pane layoutX="14.0" layoutY="140.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="48.0" prefWidth="1234.0">
                <children>
                   <ImageView fitHeight="43.0" fitWidth="40.0" layoutX="68.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -30,6 +30,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
+                  <Button layoutX="1134.0" layoutY="12.0" onAction="#saveAndQuit" text="💾 Sauvegarder" />
                </children>
             </Pane>
          </children>
@@ -38,7 +39,7 @@
    <bottom>
       <Group BorderPane.alignment="CENTER">
          <children>
-            <Pane layoutX="107.0" layoutY="21.0" prefHeight="123.0" prefWidth="1210.0">
+            <Pane layoutX="108.0" layoutY="21.0" prefHeight="123.0" prefWidth="1210.0">
                <children>
                   <Button fx:id="btnOuvrir" layoutX="951.0" layoutY="55.0" mnemonicParsing="false" onAction="#ouvrirFenetre" prefHeight="21.0" prefWidth="134.0" text="Shop">
                      <graphic>
@@ -48,9 +49,9 @@
                   <Label fx:id="maisStocks" layoutX="14.0" layoutY="28.0" prefHeight="28.0" prefWidth="74.0" text="Label" />
                   <Label fx:id="patateStocks" layoutX="14.0" layoutY="54.0" prefHeight="28.0" prefWidth="68.0" text="Label" />
                   <Label fx:id="carrotStocks" layoutX="15.0" layoutY="82.0" prefHeight="28.0" prefWidth="73.0" text="Label" />
-                  <Label fx:id="tomateStocks" layoutX="110.0" layoutY="28.0" prefHeight="28.0" prefWidth="74.0" text="Label" />
-                  <Label fx:id="brocoliStocks" layoutX="110.0" layoutY="54.0" prefHeight="28.0" prefWidth="85.0" text="Label" />
-                  <Line endX="24.5" endY="-34.20000457763672" layoutX="506.0" layoutY="40.0" startX="24.5" startY="76.89999389648438" />
+                  <Label fx:id="tomateStocks" layoutX="137.0" layoutY="27.0" prefHeight="28.0" prefWidth="74.0" text="Label" />
+                  <Label fx:id="brocoliStocks" layoutX="137.0" layoutY="54.0" prefHeight="28.0" prefWidth="85.0" text="Label" />
+                  <Line endX="24.5" endY="-34.20000457763672" layoutX="515.0" layoutY="40.0" startX="24.5" startY="76.89999389648438" />
                   <Label contentDisplay="CENTER" layoutX="14.0" prefHeight="28.0" prefWidth="73.0" text="Plants :" textAlignment="CENTER" underline="true">
                      <font>
                         <Font size="16.0" />
@@ -59,7 +60,7 @@
                   <Line endX="1169.4000244140625" endY="-0.2070465087890625" layoutX="41.0" startX="-37.800010681152344" startY="3.5762786865234375E-5" />
                   <Label fx:id="laitStocks" layoutX="322.0" layoutY="27.0" prefHeight="28.0" prefWidth="57.0" text="Label" />
                   <Label fx:id="oeufStocks" layoutX="322.0" layoutY="54.0" prefHeight="28.0" prefWidth="68.0" text="Label" />
-                  <Label fx:id="baconStocks" layoutX="464.0" layoutY="27.0" prefHeight="28.0" prefWidth="66.0" text="Label" />
+                  <Label fx:id="baconStocks" layoutX="451.0" layoutY="27.0" prefHeight="28.0" prefWidth="66.0" text="Label" />
                   <Label fx:id="pouleStockes" layoutX="701.0" layoutY="29.0" prefHeight="28.0" prefWidth="77.0" text="Label" />
                   <Label contentDisplay="CENTER" layoutX="327.0" prefHeight="28.0" prefWidth="73.0" text="Animals :" textAlignment="CENTER" underline="true">
                      <font>
@@ -79,6 +80,14 @@
                   <Label fx:id="brocoliSeeds" layoutX="628.0" layoutY="34.0" text="Label" />
                   <Label fx:id="vacheStocks" layoutX="628.0" layoutY="82.0" prefHeight="28.0" prefWidth="79.0" text="Label" />
                   <Label fx:id="cohonStocks" layoutX="701.0" layoutY="54.0" prefHeight="28.0" prefWidth="77.0" text="Label" />
+                  <Button layoutX="75.0" layoutY="29.0" mnemonicParsing="false" onAction="#sellAllMais" prefHeight="25.0" prefWidth="29.0" text="💸" />
+                  <Button layoutX="75.0" layoutY="55.0" mnemonicParsing="false" onAction="#sellAllPatate" prefHeight="20.0" prefWidth="29.0" text="💸" />
+                  <Button layoutX="75.0" layoutY="80.0" mnemonicParsing="false" onAction="#sellAllCarrot" prefHeight="25.0" prefWidth="29.0" text="💸" />
+                  <Button layoutX="197.0" layoutY="29.0" mnemonicParsing="false" onAction="#sellAllTomate" prefHeight="25.0" prefWidth="29.0" text="💸" />
+                  <Button layoutX="197.0" layoutY="55.0" mnemonicParsing="false" onAction="#sellAllBrocoli" prefHeight="25.0" prefWidth="29.0" text="💸" />
+                  <Button layoutX="376.0" layoutY="30.0" mnemonicParsing="false" onAction="#sellAllOeuf" prefHeight="25.0" prefWidth="29.0" text="💸" />
+                  <Button layoutX="376.0" layoutY="55.0" mnemonicParsing="false" onAction="#sellAllBacon" prefHeight="25.0" prefWidth="29.0" text="💸" />
+                  <Button layoutX="503.0" layoutY="29.0" mnemonicParsing="false" onAction="#sellAllLait" prefHeight="25.0" prefWidth="29.0" text="💸" />
                </children>
             </Pane>
             <Group />

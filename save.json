@@ -1,0 +1,337 @@
+{
+  "money": 550.0,
+  "seeds": {
+    "Poule": 1,
+    "Mais": 0
+  },
+  "stocks": {
+    "Mais": 0
+  },
+  "lands": [
+    {
+      "isUnlocked": true,
+      "unlockCost": 0,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 50,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 100,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 150,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 200,
+      "typePlant": "Poule",
+      "isAnimal": true,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 250,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 300,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 350,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 400,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 450,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 500,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 550,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 600,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 650,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 700,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 750,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 800,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 850,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 900,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": true,
+      "unlockCost": 950,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1000,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1050,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1100,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1150,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1200,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1250,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1300,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1350,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1400,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1450,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1500,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1550,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1600,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1650,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1700,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1750,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1800,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1850,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1900,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 1950,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 2000,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 2050,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 2100,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 2150,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 2200,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 2250,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 2300,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 2350,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 2400,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 2450,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 2500,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 2550,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 2600,
+      "isAnimal": false,
+      "collectAuthorized": false
+    },
+    {
+      "isUnlocked": false,
+      "unlockCost": 2650,
+      "isAnimal": false,
+      "collectAuthorized": false
+    }
+  ]
+}
